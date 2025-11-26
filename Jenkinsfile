@@ -15,7 +15,11 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
+<<<<<<< HEAD
                     // Usa tu DockerFile con F mayúscula
+=======
+                    // Usa DockerFile con F mayúscula
+>>>>>>> bc60a21 (Agrega database.db)
                     sh 'docker build -f DockerFile -t flask-task-manager .'
                 }
             }
