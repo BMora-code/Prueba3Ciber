@@ -4,7 +4,11 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/tu-repo/flask-task-manager.git'
+                git(
+                    branch: 'main',
+                    credentialsId: 'github-token',
+                    url: 'https://github.com/BMora-code/Prueba3Ciber.git'
+                )
             }
         }
 
