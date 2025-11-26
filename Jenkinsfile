@@ -15,7 +15,8 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    sh 'docker build -t flask-task-manager .'
+                    // Usa tu DockerFile con F mayúscula
+                    sh 'docker build -f DockerFile -t flask-task-manager .'
                 }
             }
         }
