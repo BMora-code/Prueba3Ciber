@@ -6,7 +6,7 @@ pipeline {
             steps {
                 git(
                     branch: 'main',
-                    credentialsId: 'github-token',
+                    credentialsId: 'github-token', // solo si usas token
                     url: 'https://github.com/BMora-code/Prueba3Ciber.git'
                 )
             }
@@ -15,12 +15,8 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-<<<<<<< HEAD
-                    // Usa tu DockerFile con F mayúscula
-=======
-                    // Usa DockerFile con F mayúscula
->>>>>>> bc60a21 (Agrega database.db)
-                    sh 'docker build -f DockerFile -t flask-task-manager .'
+                    // Asegúrate de que el Dockerfile se llame exactamente "Dockerfile"
+                    sh 'docker build -t eva3ocy-flask-app -f Dockerfile .'
                 }
             }
         }
@@ -28,7 +24,8 @@ pipeline {
         stage('Init Database') {
             steps {
                 script {
-                    sh 'docker run --rm -v $(pwd)/database.db:/app/database.db flask-task-manager python init_db.py'
+                    // Monta correctamente el volumen en Jenkins
+                    sh 'docker run --rm -v $WORKSPACE/database.db:/app/database.db eva3ocy-flask-app python init_db.py'
                 }
             }
         }
